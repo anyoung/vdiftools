@@ -1,20 +1,20 @@
 CC = gcc
 INC = 
 LIBS = 
-CFLAGS = $(INC)
+CFLAGS = -g $(INC)
 
-DEPS = r2dbe_vdif.o vdif_files.o ioutils.o
+DEPS = r2dbe_vdif.o vdif_files.o vdif_frames.o ioutils.o
 
 .PHONY: all clean
 
 %.o: %.c
-	$(CC) -c -o $@ $< $(CFLAGS) $(DBG_ARGS)
+	$(CC) $(CFLAGS) -c -o $@ $< $(DBG_ARGS)
 
 testsg: testsg.o $(DEPS)
-	$(CC) -o $@ $^ $(LIBS)
+	$(CC) $(CFLAGS) -o $@ $^ $(LIBS)
 
 testf: testf.o $(DEPS)
-	$(CC) -o $@ $^ $(LIBS)
+	$(CC) $(CFLAGS) -o $@ $^ $(LIBS)
 
 all: testsg testf
 

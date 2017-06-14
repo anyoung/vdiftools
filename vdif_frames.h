@@ -32,4 +32,24 @@ typedef struct vdif_header {
 	uint32_t eud3;
 } vdif_header_t;
 
+/* Extract samples from the given VDIF frame.
+ * Arguments:
+ *  frm -- Pointer to vdif_header_t that is the VDIF header of a full
+ *         frame
+ *  out -- Pointer address, memory will be allocated for sample storage
+ *  nch -- Address where number of channels will be stored
+ *  bps -- Address where number of bits per sample will be stored
+ *  cmp -- Address where number of sample components (re, or re+im)
+ *         stored
+ * Returns:
+ *  cnt -- Total number of samples read.
+ * Notes:
+ *  Upon successful extraction of samples, integer values will be stored
+ *  in the memory allocated to *out. The number of channels, bits per
+ *  sample, and number of components (1 for real, or 2 for real +
+ *  imaginary) are stored in *nch, *bps, and *cmp, respectively. The
+ *  total number of samples read is returned.
+ */
+int get_samples(vdif_header_t *frm, uint32_t **out, int *nch, int *bps, int *cmp);
+
 #endif // VDIF_FRAMES_H
