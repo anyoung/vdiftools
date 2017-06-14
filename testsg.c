@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 #include "vdif_files.h"
+#include "vdif_frames.h"
 
 int main(int argc, const char **argv) {
 	int ii;
